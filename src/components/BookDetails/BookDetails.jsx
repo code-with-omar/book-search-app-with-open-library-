@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import notFoundImage  from '../../images/cover_not_found.jpg'
 import "./BookDetails.css"
 const BookDetails = () => {
@@ -7,9 +7,15 @@ const BookDetails = () => {
     const { description, title, subjects, subject_places, subject_times, covers } = loadBooksDetails;
     const imgCovers = covers[0];
     const url = imgCovers ? `https://covers.openlibrary.org/b/id/${imgCovers}-L.jpg` : notFoundImage;
+    const navigate=useNavigate()
+    const goBackPage=()=>{
+        navigate(-1);
+    }
     return (
         <section className='book-details text-black'>
+            
             <div className='container'>
+            <button onClick={goBackPage} className="fw-6 fs-24 back-btn"  >Back</button>
                 <div className='book-details-content grid'>
                     <div className='book-details-img'>
                         <img src={url} alt="cover img" />
