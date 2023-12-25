@@ -1,17 +1,35 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home/Home.jsx';
-import About from './pages/About/About.jsx';
-import BookList from './components/BookList/BookList.jsx';
-import BookDetails from './components/BookDetails/BookDetails.jsx';
-import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import './index.css';
+import BookList from './components/BookList/BookList';
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<Home></Home>,
+    children: [
+      {
+        path: 'books/:bookId', // Corrected path syntax to include ':bookId' for dynamic parameter
+        element: <BookList />,
+        loader: async ({ params }) => {
+          const response = await fetch(`https://openlibrary.org/search.json?title=${params.bookId}`);
+          return response.json();
+        }
+      },
+    ]
+  },
+
+  {
+    path: 'about',
+    element: <About />
+  }
+]);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/book" element={<BookList />} />
-      <Route path="/book/:id" element={<BookDetails />} />
-    </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );

@@ -206,6 +206,10 @@ input {
     padding: 0 2rem;
 }
 
+.grid {
+    display: grid;
+}
+
 .section-title h2 {
     font-weight: 600;
     text-transform: uppercase;
