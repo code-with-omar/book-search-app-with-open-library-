@@ -1,10 +1,16 @@
 import './Book.css'
-import notFoundImage from '../../images/cover_not_found.jpg'
+import notFoundImage from "../../images/cover_not_found.jpg"
+import { Link } from 'react-router-dom';
 const Book = ({ books }) => {
-    const { cover_i, title, author_name, first_publish_year, edition_count } = books;
-    const url = `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`;
+    
+    const { cover_i, title, author_name, first_publish_year, edition_count,key } = books;
+
+    const keyValue=key.replace('/works/', '');
+   
+    const url = cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg` : notFoundImage;
     return (
-        <div className='book-item flex flex-column flex-sb'>
+        <Link to={`/bookdetails/work/${keyValue}`}>
+            <div className='book-item flex flex-column flex-sb'>
             <div className="book-item-img">
                 <img src={url} alt="" />
             </div>
@@ -23,6 +29,7 @@ const Book = ({ books }) => {
 
             </div>
         </div>
+        </Link>
     );
 };
 

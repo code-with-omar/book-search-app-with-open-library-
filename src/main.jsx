@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import './index.css';
 import BookList from './components/BookList/BookList';
+import BookDetails from './components/BookDetails/BookDetails';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,15 @@ const router = createBrowserRouter([
         element: <BookList />,
         loader: async ({ params }) => {
           const response = await fetch(`https://openlibrary.org/search.json?title=${params.bookId}`);
-          console.log(response)
+          return response.json();
+        }
+      },
+      {
+        path: 'bookdetails/work/:bookDetailsId', // Corrected path syntax to include ':bookId' for dynamic parameter
+        element: <BookDetails />,
+        loader: async ({ params }) => {
+          const response = await fetch(`https://openlibrary.org/works/${params.bookDetailsId}.json`);
+
           return response.json();
         }
       },

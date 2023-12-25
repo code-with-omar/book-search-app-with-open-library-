@@ -12,7 +12,7 @@ const Header = () => {
                     <div className='header-content flex flex-c text-center text-white'>
                         <h2 className='header-title'>Find your book of choice</h2>
                         <p className="header-text fs-18">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nisi fuga at atque, eius, sint necessitatibus reprehenderit, animi exercitationem ex distinctio commodi veniam enim architecto ullam maxime explicabo quisquam earum!
+                        A book, a doorway to countless worlds, encapsulates stories, knowledge, and imagination. It weaves intricate tales, educates, and transports readers to unexplored realms, offering solace, inspiration, and wisdom within its pages. Each book holds the power to ignite minds and evoke emotions, leaving an indelible mark on its readers soul.
                         </p>
                         <SearchForm></SearchForm>
                     </div>
