@@ -16,6 +16,7 @@ const router = createBrowserRouter([
         element: <BookList />,
         loader: async ({ params }) => {
           const response = await fetch(`https://openlibrary.org/search.json?title=${params.bookId}`);
+          console.log(response)
           return response.json();
         }
       },

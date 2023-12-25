@@ -1,5 +1,5 @@
 import './Book.css'
-
+import notFoundImage from '../../images/cover_not_found.jpg'
 const Book = ({ books }) => {
     const { cover_i, title, author_name, first_publish_year, edition_count } = books;
     const url = `https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`;
